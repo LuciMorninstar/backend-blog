@@ -53,4 +53,28 @@ try {
 
 }
 
+export const authGuard = async(req,res,next)=>{
+    
 
+try {
+    
+        if(req.user && req.user.role == "admin"){
+            return next();
+    
+        }
+
+        const err = new Error("Unauthorized Access");
+        err.statusCode = 401;
+        return next(err);
+
+        
+    
+
+} catch (error) {
+    next(error);
+    
+}
+
+
+
+}
